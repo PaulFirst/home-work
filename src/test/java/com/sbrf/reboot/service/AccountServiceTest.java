@@ -1,5 +1,6 @@
 package com.sbrf.reboot.service;
 
+import com.sbrf.reboot.AccountService;
 import com.sbrf.reboot.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,4 +64,19 @@ class AccountServiceTest {
         assertEquals(2, AccountService.class.getMethods().length - Object.class.getMethods().length);
     }
 
+    @Test
+    void agreementRelevant() {
+        long clientId = 4L;
+        when(accountRepository.getUserAgreementDateByClientId(clientId)).thenReturn("02.04.2018");
+
+        assertTrue(accountService.isClientAgreementRelevant(clientId, 5));
+    }
+
+    @Test
+    void agreementIrrelevant() {
+        long clientId = 5L;
+        when(accountRepository.getUserAgreementDateByClientId(clientId)).thenReturn("15.09.2019");
+
+        assertFalse(accountService.isClientAgreementRelevant(clientId, 1));
+    }
 }
