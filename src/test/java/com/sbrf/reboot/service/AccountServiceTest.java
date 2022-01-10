@@ -56,7 +56,7 @@ class AccountServiceTest {
 
     @Test
     void repositoryHasTreeMethods() {
-        assertEquals(2, AccountRepository.class.getMethods().length);
+        assertEquals(3, AccountRepository.class.getMethods().length);
     }
 
     @Test
