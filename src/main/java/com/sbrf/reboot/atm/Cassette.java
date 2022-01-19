@@ -2,7 +2,7 @@ package com.sbrf.reboot.atm;
 
 import java.util.ArrayList;
 
-public class Cassette<T> {
+public class Cassette<T extends Banknote> {
 
     ArrayList<T> banknotes = new ArrayList<>();
 
