@@ -1,6 +1,6 @@
 package com.sbrf.reboot.generics;
 
-public class Repository<T> implements InfoInterface<T> {
+public class Repository<T> implements InfoProvider<T> {
     T data;
 
     public Repository(T data) {

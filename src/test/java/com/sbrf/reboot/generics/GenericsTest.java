@@ -14,7 +14,7 @@ public class GenericsTest {
         String lastName = "Ivanov";
         String fullName = firstName + " " + lastName;
 
-        InfoInterface<String> client = new Client(firstName, lastName);
+        InfoProvider<String> client = new Client(firstName, lastName);
         Assertions.assertEquals(fullName, client.getInfo());
 
         List<Integer> accountIds = new ArrayList<>();
@@ -22,11 +22,11 @@ public class GenericsTest {
         accountIds.add(36);
         accountIds.add(15);
 
-        InfoInterface<List<Integer>> repository1 = new Repository<>(accountIds);
+        InfoProvider<List<Integer>> repository1 = new Repository<>(accountIds);
         Assertions.assertEquals(accountIds, repository1.getInfo());
 
         int amountOfClients = 1047;
-        InfoInterface<Integer> repository2 = new Repository<>(amountOfClients);
+        InfoProvider<Integer> repository2 = new Repository<>(amountOfClients);
         Assertions.assertEquals(amountOfClients, repository2.getInfo());
 
     }

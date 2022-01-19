@@ -1,6 +1,6 @@
 package com.sbrf.reboot.generics;
 
-public class Client implements InfoInterface<String> {
+public class Client implements InfoProvider<String> {
     String firstName;
     String lastName;
 
