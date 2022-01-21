@@ -2,8 +2,7 @@ package com.sbrf.reboot.collections;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,9 +29,9 @@ public class CollectionsTest {
     @Test
     public void addStudentToRating() {
 
-        List<String> students = null;
+        List<String> students = new LinkedList<>(Arrays.asList("Иванов", "Петров", "Сидоров"));
 
-        //...
+        students.add(0, "Козлов");
 
         assertEquals(4, students.size());
     }
@@ -50,9 +49,7 @@ public class CollectionsTest {
     @Test
     public void addMoneyToBox() {
 
-        Set<Integer> moneyBox = null;
-
-        //...
+        Set<Integer> moneyBox = new HashSet<>(Arrays.asList(1, 2, 3, 5, 10, 15, 30, 20, 50, 100));
 
         assertEquals(10, moneyBox.size());
     }
@@ -72,12 +69,43 @@ public class CollectionsTest {
         class Book {
         }
 
-        List<Book> bookshelf = null;
-
-        //...
+        List<Book> bookshelf = new ArrayList<>();
+        bookshelf.add(new Book());
+        bookshelf.add(new Book());
+        bookshelf.add(new Book());
 
         assertEquals(3, bookshelf.size());
     }
 
+    /*
+     * Задача
+     * Имеется список с идентификаторами заказчиков, совершившими заказы в течение дня
+     * Количество записей равно числу всех заказов
+     * При помощи коллекций узнать сколько заказчиков (уникально) было в этот день
+     */
+    @Test
+    public void getCustomersUnique() {
+        List<Integer> orders = new ArrayList<>(Arrays.asList(1, 6, 3, 7, 4, 5, 8, 2, 6, 1, 7, 5, 1, 9));
 
+        Set<Integer> customersId = new HashSet<>(orders);
+
+        assertEquals(9, customersId.size());
+    }
+
+    /*
+     * Задача
+     * Игра в проверку на память
+     * Составляется набор вещей, которые игрок будет запоминать
+     * Затем случайные элементы могут удаляться или переставляться
+     * относительно других, а также в случайных местах могут появляться новые
+     */
+    @Test
+    public void getPositionByGrowth() {
+        List<String> things = new LinkedList<>(Arrays.asList("Шарик", "Ножницы" , "Бусы", "Кубик", "Карандаш"));
+        things.remove("Ножницы");
+        things.remove("Кубик");
+        things.add(2, "Часы");
+
+        assertEquals(new LinkedList<>(Arrays.asList("Шарик", "Бусы", "Часы", "Карандаш")), things);
+    }
 }
