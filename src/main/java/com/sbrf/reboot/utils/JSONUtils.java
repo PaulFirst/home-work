@@ -9,12 +9,8 @@ import com.sbrf.reboot.dto.Response;
 public class JSONUtils {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static String toJSON(Request request) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(request);
-    }
-
-    public static String toJSON(Response response) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(response);
+    public static String toJSON(Object object) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(object);
     }
 
     public static Request JSONtoRequest(String s) throws JsonProcessingException {
