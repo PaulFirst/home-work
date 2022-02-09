@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +23,7 @@ public class StreamTest {
 
         List<Integer> expectedIntegers = Arrays.asList(3, 6, 8, 9);
 
-        List<Integer> actualIntegers = null; //add code here
+        List<Integer> actualIntegers = integers.stream().sorted().collect(Collectors.toList());
 
         assertEquals(expectedIntegers, actualIntegers);
     }
@@ -36,7 +38,7 @@ public class StreamTest {
 
         List<Integer> expectedIntegers = Arrays.asList(6, 8);
 
-        List<Integer> actualIntegers = null; //add code here
+        List<Integer> actualIntegers = integers.stream().filter(num -> num % 2 == 0).collect(Collectors.toList());
 
         assertEquals(expectedIntegers, actualIntegers);
 
@@ -71,7 +73,8 @@ public class StreamTest {
 
         );
 
-        List<Book> actualBooks = null; //add code here
+        List<Book> actualBooks = books.stream().filter(book -> "Maria".equals(book.author))
+                .sorted(Comparator.comparing(o -> o.price)).collect(Collectors.toList());
 
         assertEquals(expectedBooks, actualBooks);
 
@@ -88,10 +91,34 @@ public class StreamTest {
 
         List<String> expectedContracts = Arrays.asList("M-NCC-1-CH", "M-NCC-2-US", "M-NCC-3-NH");
 
-        List<String> actualContracts = null; //add code here
+        List<String> actualContracts = contracts.stream().map(str -> "M-" + str).collect(Collectors.toList());
 
         assertEquals(expectedContracts, actualContracts);
 
+    }
+
+    @Test
+    public void uniqueFiveValues() {
+        List<Integer> sourceList = Arrays.asList(2, 7, 9, 2, 9, 3, 6, 5);
+
+        List<Integer> expectedList = Arrays.asList(2, 7, 9, 3, 6);
+
+        List<Integer> resultList = sourceList.stream().distinct().limit(5).collect(Collectors.toList());
+
+        assertEquals(expectedList, resultList);
+    }
+
+    @Test
+    public void doubleSquaredArray() {
+        List<String> sourceList = Arrays.asList("7", "9", "3", "5");
+
+        double[] expectedArr = {49.0, 81.0, 9.0, 25.0};
+
+        double[] resultArr = sourceList.stream().mapToDouble(Double::parseDouble).map(x -> x * x).toArray();
+
+        for (int i = 0; i < expectedArr.length; i++) {
+            assertEquals(expectedArr[i], resultArr[i]);
+        }
     }
 
 }
