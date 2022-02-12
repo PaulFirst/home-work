@@ -30,12 +30,11 @@
         <lombok.version>1.18.20</lombok.version>
         <junit-jupiter.version>5.7.2</junit-jupiter.version>
         <mockito-core.version>3.11.2</mockito-core.version>
-
-        <jackson-databind.version>2.12.4</jackson-databind.version>
+        <jackson-databind.version>2.13.1</jackson-databind.version>
+        <h2.version>1.4.199</h2.version>
         <jackson-dataformat-xml.version>2.11.1</jackson-dataformat-xml.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-
     </properties>
 
     <dependencies>
@@ -61,6 +60,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
