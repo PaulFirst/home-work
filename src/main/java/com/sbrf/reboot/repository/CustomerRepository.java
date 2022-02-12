@@ -11,4 +11,8 @@ public interface CustomerRepository {
 
     List<Customer> getAll();
 
+    boolean deleteCustomer(@NonNull String userName, String eMail);
+
+    boolean updateCustomer(@NonNull String newUserName, String newEMail, @NonNull String oldUserName, String oldEMail);
+
 }
