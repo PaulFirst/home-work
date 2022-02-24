@@ -21,11 +21,14 @@ public class SomeService {
             public String call() throws Exception {
 
                 // Реализуйте отправку отчета используя CompletableFuture
-                String reportResult = reportService.sendReport("Отправляю отчет");
+                //String reportResult = reportService.sendReport("Отправляю отчет");
+                CompletableFuture<String> future = CompletableFuture.supplyAsync(() ->
+                        reportService.sendReport("Отправляю отчет"));
 
                 //какой то код..
                 Thread.sleep(Duration.ofSeconds(3).toMillis());
 
+                String reportResult = future.get();
                 if (reportResult.equals("SUCCESS")) {
                     System.out.println("Отчет отправлен успешно");
                 }
