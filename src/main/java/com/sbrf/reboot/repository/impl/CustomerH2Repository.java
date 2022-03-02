@@ -39,9 +39,9 @@ public class CustomerH2Repository implements CustomerRepository {
         String sql = "SELECT * FROM CUSTOMER";
         try (
                 Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                PreparedStatement stmt = conn.prepareStatement(sql)
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet resultSet = stmt.executeQuery()
         ) {
-            ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
                 Customer customer = new Customer();
                 customer.setId(resultSet.getLong("id"));
